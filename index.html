@@ -1,155 +1,848 @@
 <!DOCTYPE html>
-<!--
-  ================================================================
-  READ THIS BEFORE YOU PASTE ANYTHING
-
-  When Gemini gives you a page, you do NOT paste it into a part of
-  this file. You replace the entire file.
-
-  Click into the editor, press Ctrl+A (Cmd+A on Mac), press Delete,
-  then paste. Everything here is meant to be thrown away.
-
-  Do that only AFTER your live link works. Get the link first.
-  ================================================================
--->
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>My first site</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy: #0d1d30;
-    --card: #142a44;
-    --line: #27466a;
-    --aqua: #6de1d7;
-    --text: #ffffff;
-    --muted: #94a9bf;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--navy);
-    color: var(--text);
-    font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    padding: 6vh 20px;
-  }
-  main { width: 100%; max-width: 640px; }
-  .badge {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--aqua);
-    margin-bottom: 18px;
-  }
-  h1 {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 800;
-    font-size: clamp(38px, 9vw, 68px);
-    letter-spacing: -0.05em;
-    line-height: 1.02;
-    margin: 0 0 8px;
-  }
-  .name {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 600;
-    font-size: clamp(18px, 4vw, 24px);
-    letter-spacing: -0.04em;
-    color: var(--aqua);
-    margin: 0 0 24px;
-  }
-  p.lead { font-size: 18px; color: var(--muted); margin: 0 0 34px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 26px 28px;
-    margin-bottom: 18px;
-  }
-  .card h2 {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
-    color: var(--aqua);
-    margin: 0 0 16px;
-  }
-  ol { margin: 0; padding-left: 20px; }
-  li { margin-bottom: 12px; color: var(--muted); }
-  li:last-child { margin-bottom: 0; }
-  li b { color: var(--text); font-weight: 700; }
-  code {
-    font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: 0.92em;
-    background: #0a1727;
-    border: 1px solid var(--line);
-    border-radius: 5px;
-    padding: 1px 6px;
-    color: var(--aqua);
-  }
-  a { color: var(--aqua); }
-  footer {
-    margin-top: 30px;
-    font-size: 14px;
-    color: #6e839a;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Swell &bull; Personal Surf Forecast Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #080d14;
+      --card-bg: #0f172a;
+      --card-border: #1e293b;
+      --accent-cyan: #06b6d4;
+      --accent-blue: #3b82f6;
+      --accent-teal: #14b8a6;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-sub: #64748b;
+      --good: #10b981;
+      --fair: #f59e0b;
+      --poor: #ef4444;
+      --pill-bg: #1e293b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding: 2rem 1.25rem 4rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+    }
+
+    .brand h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      background-color: var(--good);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse-ring 1.8s infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      70% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* Spot Selection Tabs */
+    .spot-tabs {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+      scrollbar-width: none;
+    }
+
+    .spot-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 0.6rem 1.25rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      background: #1e293b;
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      background: #0284c7;
+      color: #fff;
+      border-color: #38bdf8;
+      box-shadow: 0 0 16px rgba(2, 132, 199, 0.4);
+    }
+
+    /* Spot Overview Banner */
+    .spot-banner {
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .banner-info h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .banner-info span {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .banner-metrics {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-sub);
+      font-weight: 600;
+    }
+
+    .metric-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Grid of Forecast Sources */
+    .source-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .source-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .source-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .source-card:hover {
+      border-color: #334155;
+      transform: translateY(-2px);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+    }
+
+    .source-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .source-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      background: var(--pill-bg);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .wave-height-box {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .wave-height-val {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #38bdf8;
+    }
+
+    .wave-height-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .data-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+      border-bottom: 1px dashed #1e293b;
+      padding-bottom: 0.4rem;
+    }
+
+    .data-row:last-child {
+      border-bottom: none;
+    }
+
+    .data-label {
+      color: var(--text-muted);
+    }
+
+    .data-val {
+      font-weight: 600;
+    }
+
+    .status-pill {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status-good {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+    }
+
+    .status-fair {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+    }
+
+    .status-poor {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+    }
+
+    .card-footer-link {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      text-align: center;
+      padding: 0.65rem;
+      background: #1e293b;
+      color: var(--text-main);
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .card-footer-link:hover {
+      background: #334155;
+    }
+
+    /* Live Webcams & Quick Tools */
+    .bottom-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .bottom-section {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cam-feed {
+      width: 100%;
+      height: 240px;
+      background-color: #030712;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .cam-badge {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #ef4444;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .tide-timeline {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    .tide-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+    }
+
+    .tide-time {
+      color: var(--text-muted);
+    }
+
+    .tide-val {
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .notes-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .notes-item {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-left: 2px solid var(--accent-cyan);
+      padding-left: 0.75rem;
+    }
+
+    .notes-item strong {
+      color: var(--text-main);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+  </style>
 </head>
 <body>
-<main>
 
-  <span class="badge">Cal Poly Vibe Coding &middot; Session 01</span>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1>Local Swell Hub</h1>
+        <p>Cross-referenced surf, wind, and tide aggregation</p>
+      </div>
+      <div class="meta-bar">
+        <span class="badge">
+          <span class="pulse"></span> Live Feeds Synced
+        </span>
+        <span class="badge" id="current-time">Today, 06:45 AM PDT</span>
+      </div>
+    </header>
 
-  <h1>It&rsquo;s live.</h1>
+    <!-- Spot Navigation Tabs -->
+    <nav class="spot-tabs" id="spot-nav">
+      <button class="tab-btn active" onclick="switchSpot('ocean-beach')">Ocean Beach (Outer)</button>
+      <button class="tab-btn" onclick="switchSpot('rockaway')">Rockaway / Pacifica</button>
+      <button class="tab-btn" onclick="switchSpot('mavericks')">Mavericks Pillar Pt</button>
+      <button class="tab-btn" onclick="switchSpot('steamer-lane')">Steamer Lane</button>
+    </nav>
 
-  <!-- Step 5: change the name below to yours, then commit. -->
-  <p class="name">Built by YOUR NAME HERE</p>
+    <!-- Overview Banner -->
+    <section class="spot-banner">
+      <div class="banner-info">
+        <h2 id="spot-title">Ocean Beach &bull; VFWs</h2>
+        <span id="spot-coords">San Francisco, CA &bull; 37.769° N, 122.511° W</span>
+      </div>
+      <div class="banner-metrics">
+        <div class="metric-item">
+          <span class="metric-label">Consensus Wave</span>
+          <span class="metric-value" id="consensus-wave">4 - 6 FT</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label">Water Temp</span>
+          <span class="metric-value">54&deg; F</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label">Primary Swell</span>
+          <span class="metric-value">WNW @ 13s</span>
+        </div>
+      </div>
+    </section>
 
-  <p class="lead">
-    This page is on the internet. Anyone you send this link to can open it,
-    on any device, right now. You made that happen in about five minutes.
-  </p>
+    <!-- 3-Source Comparison Grid -->
+    <div class="source-grid" id="forecast-grid">
+      <!-- Cards rendered dynamically by JS -->
+    </div>
 
-  <div class="card">
-    <h2>Three things, in this order</h2>
-    <ol>
-      <li><b>Put your name on it.</b> Edit <code>index.html</code>, change
-        Hayden Biesiadecki above, commit, refresh this page.</li>
-      <li><b>Submit this link.</b> Go to
-        <a href="https://www.calpolyvibecoding.com/">calpolyvibecoding.com</a>,
-        make an account, and paste this URL in. That is how you get counted,
-        and how Claude seats get assigned.</li>
-      <li><b>Then build.</b> Open Gemini, get a page, and replace this entire
-        file with it.</li>
-    </ol>
+    <!-- Bottom Secondary Info -->
+    <div class="bottom-section">
+      <!-- Live Cam & Tide Track -->
+      <div class="section-card">
+        <div class="section-title">
+          <span>Live Beach View &amp; Tide Curve</span>
+          <span class="badge">Cam ID: #042</span>
+        </div>
+        <div class="cam-feed">
+          <div class="cam-badge"><span class="pulse"></span> LIVE CAM</div>
+          <svg width="48" height="48" fill="none" stroke="#475569" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
+          </svg>
+          <span style="color: #64748b; font-size: 0.85rem; margin-top: 0.5rem;">Streaming North Bar View</span>
+        </div>
+        <div class="tide-timeline">
+          <div class="tide-step">
+            <span class="tide-time">04:12 AM</span>
+            <span class="tide-val">1.2 ft (Low)</span>
+          </div>
+          <div class="tide-step">
+            <span class="tide-time">10:35 AM</span>
+            <span class="tide-val" style="color: #10b981;">5.1 ft (High)</span>
+          </div>
+          <div class="tide-step">
+            <span class="tide-time">04:48 PM</span>
+            <span class="tide-val">0.4 ft (Low)</span>
+          </div>
+          <div class="tide-step">
+            <span class="tide-time">11:15 PM</span>
+            <span class="tide-val">5.8 ft (High)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Session Log / Spot Rules -->
+      <div class="section-card">
+        <div class="section-title">
+          <span>Break Notes &amp; Best Tides</span>
+        </div>
+        <ul class="notes-list" id="notes-container">
+          <li class="notes-item">
+            <strong>Optimal Tide:</strong> Mid-rising (2.5 &ndash; 4.0 ft) prevents closing out on outer sandbars.
+          </li>
+          <li class="notes-item">
+            <strong>Wind Window:</strong> Dawn patrol to 10:30 AM before onshore NW thermal breeze kicks in.
+          </li>
+          <li class="notes-item">
+            <strong>Hazard:</strong> Heavy rip currents between Rivera and Pacheco street peaks.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      Compiled for personal reference &bull; Aggregating Surfline, Magicseaweed / NOAA, and Windy API Models
+    </footer>
   </div>
 
-  <div class="card">
-    <h2>How to replace this page</h2>
-    <ol>
-      <li>Copy what Gemini gives you with the <b>copy button</b> on the code
-        block. Do not click and drag.</li>
-      <li>Open <code>index.html</code> here and click the pencil icon.</li>
-      <li><b>Ctrl+A</b> (<b>Cmd+A</b> on Mac), then <b>Delete</b>. All of it.
-        Yes, really.</li>
-      <li>Paste, commit, refresh.</li>
-    </ol>
-  </div>
+  <script>
+    const spotData = {
+      'ocean-beach': {
+        name: 'Ocean Beach (VFWs / Sloat)',
+        coords: 'San Francisco, CA • 37.769° N, 122.511° W',
+        consensus: '4 - 6 FT',
+        notes: [
+          '<strong>Optimal Tide:</strong> Mid-rising (2.5 – 4.0 ft) avoids the heavy shore dump.',
+          '<strong>Wind Window:</strong> Glassy dawn patrol until around 10:30 AM before afternoon NW chop.',
+          '<strong>Dangers:</strong> Strong outer rips; paddle out at rips or channels by Noriega.'
+        ],
+        sources: [
+          {
+            name: 'Surfline',
+            tag: 'LOTUS Model',
+            height: '4 - 6 FT',
+            heightSub: 'Chest to head high',
+            rating: 'Fair to Good',
+            ratingClass: 'status-good',
+            swell: '5.2ft @ 13s WNW 290°',
+            wind: '4 kts ENE (Offshore)',
+            tide: '3.1 ft Rising',
+            link: 'https://www.surfline.com'
+          },
+          {
+            name: 'Windy / ECMWF',
+            tag: 'ECMWF 9km',
+            height: '4.8 FT',
+            heightSub: 'Significant swell height',
+            rating: 'Clean Early',
+            ratingClass: 'status-good',
+            swell: '4.6ft @ 14s WNW 285°',
+            wind: '3 kts NE (Glassy)',
+            tide: 'Slack @ 08:30',
+            link: 'https://www.windy.com'
+          },
+          {
+            name: 'NOAA CDIP Buoy',
+            tag: 'Buoy #029 (Pt Reyes)',
+            height: '5.5 FT',
+            heightSub: 'Raw real-time sensor',
+            rating: 'Active Swell',
+            ratingClass: 'status-fair',
+            swell: '5.6ft @ 13.3s WNW',
+            wind: '6 kts Var (Station 46026)',
+            tide: '3.4 ft @ Presidio',
+            link: 'https://www.ndbc.noaa.gov'
+          }
+        ]
+      },
+      'rockaway': {
+        name: 'Rockaway & Pacifica State Beach',
+        coords: 'Pacifica, CA • 37.598° N, 122.502° W',
+        consensus: '3 - 4 FT',
+        notes: [
+          '<strong>Optimal Tide:</strong> Low to mid incoming; high tide swashes up to seawall at Linda Mar.',
+          '<strong>Wind Window:</strong> Protected from southerly winds by Pedro Point shelter.',
+          '<strong>Dangers:</strong> Crowded inside lineups on weekend mornings.'
+        ],
+        sources: [
+          {
+            name: 'Surfline',
+            tag: 'LOTUS Model',
+            height: '3 - 4 FT',
+            heightSub: 'Waist to chest high',
+            rating: 'Fair',
+            ratingClass: 'status-fair',
+            swell: '3.8ft @ 12s WNW',
+            wind: '5 kts E (Offshore)',
+            tide: '2.8 ft Rising',
+            link: 'https://www.surfline.com'
+          },
+          {
+            name: 'Windy / GFS',
+            tag: 'GFS Wave',
+            height: '3.2 FT',
+            heightSub: 'Sheltered break estimate',
+            rating: 'Clean',
+            ratingClass: 'status-good',
+            swell: '3.5ft @ 13s WNW',
+            wind: '4 kts SE',
+            tide: 'Slack @ 08:15',
+            link: 'https://www.windy.com'
+          },
+          {
+            name: 'NOAA CDIP Buoy',
+            tag: 'Buoy #142 (San Pedro)',
+            height: '4.1 FT',
+            heightSub: 'Nearshore buoy',
+            rating: 'Moderate',
+            ratingClass: 'status-fair',
+            swell: '4.0ft @ 12.8s W',
+            wind: '5 kts ESE',
+            tide: '2.9 ft',
+            link: 'https://www.ndbc.noaa.gov'
+          }
+        ]
+      },
+      'mavericks': {
+        name: 'Mavericks & Pillar Point',
+        coords: 'Half Moon Bay, CA • 37.495° N, 122.501° W',
+        consensus: '8 - 12 FT',
+        notes: [
+          '<strong>Optimal Tide:</strong> Low falling into dead low tide for reef ledging.',
+          '<strong>Wind Window:</strong> Strict glass or light northeast winds needed for steep faces.',
+          '<strong>Dangers:</strong> Heavy hold downs, shallow reef, rock boil heads.'
+        ],
+        sources: [
+          {
+            name: 'Surfline',
+            tag: 'High-Res Bathymetry',
+            height: '8 - 12 FT',
+            heightSub: 'Double overhead faces',
+            rating: 'Good (Experts)',
+            ratingClass: 'status-good',
+            swell: '7.5ft @ 16s WNW 295°',
+            wind: '2 kts E',
+            tide: '1.9 ft Dropping',
+            link: 'https://www.surfline.com'
+          },
+          {
+            name: 'Windy / ECMWF',
+            tag: 'ECMWF 9km',
+            height: '10 FT',
+            heightSub: 'Long period energy',
+            rating: 'Heavy',
+            ratingClass: 'status-fair',
+            swell: '7.8ft @ 15.5s WNW',
+            wind: '3 kts NE',
+            tide: 'Low @ 09:45',
+            link: 'https://www.windy.com'
+          },
+          {
+            name: 'NOAA CDIP Buoy',
+            tag: 'Buoy #092 (Pillar Pt)',
+            height: '8.4 FT',
+            heightSub: 'Outer reef sensor',
+            rating: 'Solid Pulse',
+            ratingClass: 'status-good',
+            swell: '8.2ft @ 16.0s WNW',
+            wind: '4 kts Calm',
+            tide: '2.0 ft',
+            link: 'https://www.ndbc.noaa.gov'
+          }
+        ]
+      },
+      'steamer-lane': {
+        name: 'Steamer Lane (The Point / Middle)',
+        coords: 'Santa Cruz, CA • 36.953° N, 122.024° W',
+        consensus: '3 - 5 FT',
+        notes: [
+          '<strong>Optimal Tide:</strong> Mid to High tide wraps nicely around the cliff into Cowell / Middle Peak.',
+          '<strong>Wind Window:</strong> Sheltered from NW winds by Santa Cruz point geometry.',
+          '<strong>Dangers:</strong> Cliff jumps, sea urchins on inside shelf.'
+        ],
+        sources: [
+          {
+            name: 'Surfline',
+            tag: 'LOTUS Model',
+            height: '3 - 5 FT',
+            heightSub: 'Waist to head high sets',
+            rating: 'Good',
+            ratingClass: 'status-good',
+            swell: '4.0ft @ 14s WNW 280°',
+            wind: '1 kt Calm (NW wrap)',
+            tide: '3.4 ft High',
+            link: 'https://www.surfline.com'
+          },
+          {
+            name: 'Windy / ECMWF',
+            tag: 'ECMWF 9km',
+            height: '4.2 FT',
+            heightSub: 'Clean point wrap',
+            rating: 'Smooth',
+            ratingClass: 'status-good',
+            swell: '3.9ft @ 14s WNW',
+            wind: 'Calm',
+            tide: 'Rising to High',
+            link: 'https://www.windy.com'
+          },
+          {
+            name: 'NOAA CDIP Buoy',
+            tag: 'Buoy #157 (Pt Santa Cruz)',
+            height: '4.5 FT',
+            heightSub: 'Monterey Bay sensor',
+            rating: 'Optimal Angle',
+            ratingClass: 'status-good',
+            swell: '4.3ft @ 13.8s W',
+            wind: '2 kts NW',
+            tide: '3.6 ft',
+            link: 'https://www.ndbc.noaa.gov'
+          }
+        ]
+      }
+    };
 
-  <footer>
-    Nothing on this page is precious. It exists so the link has something to
-    show before you have something of your own.
-  </footer>
+    function renderSpot(key) {
+      const data = spotData[key];
+      if (!data) return;
 
-</main>
+      document.getElementById('spot-title').textContent = data.name;
+      document.getElementById('spot-coords').textContent = data.coords;
+      document.getElementById('consensus-wave').textContent = data.consensus;
+
+      // Render cards
+      const container = document.getElementById('forecast-grid');
+      container.innerHTML = '';
+
+      data.sources.forEach(source => {
+        const card = document.createElement('div');
+        card.className = 'source-card';
+        card.innerHTML = `
+          <div class="card-top">
+            <div>
+              <div class="source-name">${source.name}</div>
+              <span class="source-tag">${source.tag}</span>
+            </div>
+            <span class="status-pill ${source.ratingClass}">${source.rating}</span>
+          </div>
+          <div class="wave-height-box">
+            <div class="wave-height-val">${source.height}</div>
+            <div class="wave-height-sub">${source.heightSub}</div>
+          </div>
+          <ul class="data-list">
+            <li class="data-row">
+              <span class="data-label">Primary Swell</span>
+              <span class="data-val">${source.swell}</span>
+            </li>
+            <li class="data-row">
+              <span class="data-label">Local Wind</span>
+              <span class="data-val">${source.wind}</span>
+            </li>
+            <li class="data-row">
+              <span class="data-label">Tide Window</span>
+              <span class="data-val">${source.tide}</span>
+            </li>
+          </ul>
+          <a href="${source.link}" target="_blank" rel="noopener" class="card-footer-link">
+            Open Original Chart &rarr;
+          </a>
+        `;
+        container.appendChild(card);
+      });
+
+      // Render Notes
+      const notesList = document.getElementById('notes-container');
+      notesList.innerHTML = '';
+      data.notes.forEach(note => {
+        const li = document.createElement('li');
+        li.className = 'notes-item';
+        li.innerHTML = note;
+        notesList.appendChild(li);
+      });
+    }
+
+    function switchSpot(key) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(key));
+      if (activeBtn) activeBtn.classList.add('active');
+      renderSpot(key);
+    }
+
+    // Initialize with first spot
+    renderSpot('ocean-beach');
+
+    // Update real local time string
+    try {
+      const now = new Date();
+      document.getElementById('current-time').textContent = now.toLocaleDateString('en-US', {
+        weekday: 'short',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZoneName: 'short'
+      });
+    } catch(e) {}
+  </script>
 </body>
 </html>
